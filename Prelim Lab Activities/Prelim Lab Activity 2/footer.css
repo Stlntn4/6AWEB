@@ -1,0 +1,77 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f1ec; /* Light beige background */
+    color: #4b3d26; /* Dark brown text color */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Container for the footer content */
+.cv-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #e7d0b5; /* White background for content */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+/* Section titles */
+.section-title {
+    font-size: 2em;
+    color: #6f4f28; /* Medium brown color for section titles */
+    border-bottom: 2px solid #6f4f28;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Technical Skills Section */
+.technical-skills {
+    padding-top: 30px;
+}
+
+/* Tech categories container */
+.tech-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* Individual tech category styling */
+.tech-category {
+    flex: 1 1 30%; /* Flex with responsive scaling */
+    padding: 20px;
+    background-color: #faf0e6; /* Soft light brownish background */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    margin-bottom: 20px;
+}
+
+/* Category titles */
+.category-title {
+    font-size: 1.6em;
+    color: #6f4f28; /* Medium brown for titles */
+    margin-bottom: 10px;
+}
+
+/* Tech items list */
+.tech-items {
+    font-size: 1.1em;
+    color: #4b3d26; /* Dark brown text */
+    line-height: 1.5;
+}
+
+/* Responsiveness: Stack columns on smaller screens */
+@media (max-width: 768px) {
+    .tech-categories {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tech-category {
+        flex: 1 1 100%; /* Full width on mobile */
+        margin-bottom: 20px;
+    }
+}

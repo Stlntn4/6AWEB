@@ -1,0 +1,87 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f1ec; /* Light beige background for warmth */
+    color: #4b3d26; /* Dark brown text color */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Container for the whole CV */
+.cv-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff; /* White background for main content */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+/* Main content area */
+.cv-content {
+    padding: 20px;
+}
+
+/* Section titles */
+.section-title {
+    font-size: 2em;
+    color: #6f4f28; /* Medium brown color for section titles */
+    border-bottom: 2px solid #6f4f28;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Profile text styling */
+.profile-text {
+    font-size: 1.1em;
+    color: #4b3d26; /* Dark brown text */
+    margin-bottom: 20px;
+}
+
+/* Skills section */
+.skills-section {
+    margin-top: 40px;
+}
+
+/* Skills grid layout */
+.skills-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* Skills column */
+.skills-column {
+    flex: 1;
+}
+
+/* Styling for the skills list */
+.skills-list {
+    list-style: none;
+    padding: 0;
+}
+
+.skills-list li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: #4b3d26;
+}
+
+/* Skills list item hover effect */
+.skills-list li:hover {
+    color: #6f4f28;
+    cursor: pointer;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .skills-grid {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .skills-column {
+        width: 100%;
+    }
+}
+

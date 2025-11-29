@@ -1,0 +1,119 @@
+/* General Body Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e5128 0%, #2d6a4f 50%, #40916c 100%);
+  margin: 0;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+}
+
+/* Main Heading */
+h1 {
+  color: #90dea1;
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Image Styling */
+img {
+  display: block;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+/* Paragraph Styling */
+p {
+  background-color: #ffffff;
+  padding: 15px 25px;
+  margin: 15px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1.1em;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Highlighted Class */
+.highlighted {
+  background-color: #e0f394;
+  font-weight: bold;
+  border-left: 5px solid #085128;
+}
+
+/* Input Styling */
+input {
+  width: 100%;
+  max-width: 600px;
+  padding: 12px 20px;
+  margin: 20px 0 10px 0;
+  border: 2px solid #667eea;
+  border-radius: 8px;
+  font-size: 1em;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #083928;
+  box-shadow: 0 0 8px rgba(118, 75, 162, 0.4);
+}
+
+/* Button Styling */
+button {
+  background-color: #45cf7a;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  margin: 10px 5px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background-color: #34bc91;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Container for buttons */
+div {
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1em;
+    padding: 12px 20px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}

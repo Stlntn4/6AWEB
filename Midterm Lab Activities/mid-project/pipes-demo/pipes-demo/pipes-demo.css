@@ -1,0 +1,120 @@
+/* ===============================
+   SCOPE EVERYTHING TO THIS COMPONENT
+   =============================== */
+:host {
+  display: block;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  background-color: #fdf6f6;
+  color: #4d0f0f;
+  padding-bottom: 40px;
+}
+
+/* ===============================
+   HEADER
+   =============================== */
+:host > p > strong {
+  display: block;
+  background: linear-gradient(90deg, #800000, #5a0000);
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  font-size: 26px;
+  letter-spacing: 1.5px;
+}
+
+/* ===============================
+   SECTION TITLES (PIPE NAMES)
+   =============================== */
+:host h3 {
+  max-width: 1000px;
+  margin: 35px auto 10px auto;
+  color: #800000;
+  font-size: 20px;
+  border-left: 6px solid #800000;
+  padding-left: 12px;
+}
+
+/* ===============================
+   PARAGRAPHS
+   =============================== */
+:host p {
+  max-width: 1000px;
+  margin: 6px auto;
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+
+/* ===============================
+   PIPE CONTENT CARDS
+   (only divs that follow h3 or hr)
+   =============================== */
+:host h3 + div,
+:host hr + div {
+  max-width: 1000px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 12px auto;
+  box-shadow: 0 6px 16px rgba(128, 0, 0, 0.15);
+}
+
+/* ===============================
+   CENTERED DECIMAL PIPE CARD
+   =============================== */
+:host div[style*="text-align:center"] {
+  background-color: #fff0f0;
+  border: 1px solid #800000;
+}
+
+/* ===============================
+   DIVIDER
+   =============================== */
+:host hr {
+  max-width: 1000px;
+  border: none;
+  height: 1px;
+  background-color: #800000;
+  opacity: 0.35;
+  margin: 30px auto;
+}
+
+/* ===============================
+   KEYVALUE LIST
+   =============================== */
+:host ul {
+  padding-left: 22px;
+  margin-top: 8px;
+}
+
+:host li {
+  margin: 6px 0;
+  font-weight: 500;
+}
+
+/* ===============================
+   HOVER EFFECT (SAFE)
+   =============================== */
+:host h3 + div:hover,
+:host hr + div:hover {
+  box-shadow: 0 10px 24px rgba(128, 0, 0, 0.25);
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+@media (max-width: 768px) {
+  :host h3 {
+    font-size: 18px;
+  }
+
+  :host > p > strong {
+    font-size: 22px;
+  }
+
+  :host h3 + div,
+  :host hr + div {
+    padding: 16px;
+  }
+}

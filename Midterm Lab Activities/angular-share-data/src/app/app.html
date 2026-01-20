@@ -1,0 +1,70 @@
+<h2>EMPLOYEE LIST</h2>
+
+<table border="1" cellpadding="10">
+  <tr>
+    <th>ID</th>
+    <th>FIRST NAME</th>
+    <th>LAST NAME</th>
+    <th>EMAIL</th>
+  </tr>
+
+  @for (employee of employees; track employee.id) {
+    <tr>
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.firstname }}</td>
+      <td>{{ employee.lastname }}</td>
+      <td>{{ employee.email }}</td>
+    </tr>
+  }
+</table>
+
+<br>
+
+<h2>PRODUCT LIST</h2>
+
+<table border="1" cellpadding="10">
+  <tr>
+    <th>Product ID</th>
+    <th>Product Name</th>
+    <th>Description</th>
+    <th>Price</th>
+  </tr>
+
+  @for (product of products; track product.productId) {
+    <tr>
+      <td>{{ product.productId }}</td>
+      <td>{{ product.productName }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price | currency:'PHP' }}</td>
+    </tr>
+  }
+</table>
+
+<router-outlet />
+
+
+
+
+
+<!--
+<h2>EMPLOYEES LIST</h2>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>FIRST NAME</th>
+    <th>LAST NAME</th>
+    <th>EMAIL</th>
+  </tr>
+</table>
+
+@for (employee of employees; track employee.id) {
+
+  <tr class="border-b">
+    <td class="py-2 px-4 text-center">{{ employee.id }}</td>
+    <td class="py-2 px-4 text-center">{{ employee.firstname }}</td>
+    <td class="py-2 px-4 text-center">{{ employee.lastname }}</td>
+    <td class="py-2 px-4 text-center">{{ employee.email }}</td>
+  </tr>
+} -->
+
+<!-- <router-outlet /> -->

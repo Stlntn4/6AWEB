@@ -1,0 +1,37 @@
+<h2>User List (Cached)</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>Top 5 Cars</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Car Model</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars">
+      <td>{{ car.id }}</td>
+      <td>{{ car.model }}</td>
+      <td>{{ car.description }}</td>
+    </tr>
+  </tbody>
+</table>

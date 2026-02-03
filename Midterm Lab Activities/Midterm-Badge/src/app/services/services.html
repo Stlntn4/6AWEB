@@ -1,0 +1,15 @@
+<h2>Community Services & Announcements</h2>
+<p>Search for announcements, service tickets, or updates below.</p>
+
+<input
+  placeholder="Search by title or message..."
+  (input)="onSearch($event.target.value)"
+>
+
+<div class="grid">
+  <div *ngFor="let post of posts$ | async" class="card">
+    <h4>{{ post.title }}</h4>
+    <p>{{ post.body | truncate:140 }}</p>
+    <small>Ticket ID: {{ post.id }}</small>
+  </div>
+</div>

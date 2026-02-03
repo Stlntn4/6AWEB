@@ -1,0 +1,14 @@
+<h2>Welcome to the Community Help Desk</h2>
+<p>
+This portal keeps residents informed about service updates, maintenance,
+and community announcements.
+</p>
+
+<h3>Latest Updates</h3>
+
+<div class="grid">
+  <div *ngFor="let post of latest$ | async" class="card">
+    <h4>{{ post.title | uppercase }}</h4>
+    <p>{{ post.body | truncate:120 }}</p>
+  </div>
+</div>

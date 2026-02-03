@@ -1,0 +1,22 @@
+<h2>Contact the Help Desk</h2>
+
+<div class="grid">
+  <div class="card">
+    <h3>Send a Message</h3>
+
+    <input [(ngModel)]="name" placeholder="Your Full Name">
+    <input [(ngModel)]="email" placeholder="Your Email Address">
+    <textarea [(ngModel)]="message" rows="5" placeholder="Your Message"></textarea>
+
+    <button>Submit</button>
+  </div>
+
+  <div class="card">
+    <h3>Form Preview</h3>
+
+    <p><strong>Name:</strong> {{ name | uppercase }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>Message:</strong></p>
+    <p>{{ message }}</p>
+  </div>
+</div>

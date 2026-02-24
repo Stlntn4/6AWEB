@@ -1,0 +1,173 @@
+<!-- ── Step 3: Build the Form in the Template ────────────────────────────── -->
+<!-- Uses (ngSubmit) to call onSubmit(), #myForm="ngForm" tracks form state  -->
+
+<div class="page-wrapper">
+
+  <!-- ░░ Success Card ░░ -->
+  <div class="success-card" *ngIf="submitted">
+    <div class="success-icon">✦</div>
+    <h2>Form Submitted!</h2>
+    <div class="summary-grid">
+      <div class="summary-item"><span class="s-label">Username</span><span class="s-val">{{ username }}</span></div>
+      <div class="summary-item"><span class="s-label">Email</span><span class="s-val">{{ email }}</span></div>
+      <div class="summary-item"><span class="s-label">Role</span><span class="s-val">{{ role }}</span></div>
+      <div class="summary-item"><span class="s-label">Gender</span><span class="s-val">{{ gender }}</span></div>
+      <div class="summary-item"><span class="s-label">Status</span><span class="s-val">{{ status }}</span></div>
+      <div class="summary-item full"><span class="s-label">Comments</span><span class="s-val">{{ comments || '—' }}</span></div>
+    </div>
+    <button class="btn-reset" (click)="reset()">← Back to Form</button>
+  </div>
+
+  <!-- ░░ Main Form Card ░░ -->
+  <div class="form-card" *ngIf="!submitted">
+    <div class="card-header">
+      <span class="chip">ngForm · Template-Driven</span>
+      <h1>{{ title }}</h1>
+      <p class="sub">Angular FormsModule · Two-way [(ngModel)] binding</p>
+    </div>
+
+    <!-- Step 3 · ngForm directive + Step 4 · ngModel on each control -->
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm" novalidate>
+
+      <!-- ── Section: Account ─────────────────────────────────────────── -->
+      <div class="section">
+        <div class="section-label">Account Info</div>
+
+        <!-- Username -->
+        <div class="field" [class.has-error]="usernameRef.invalid && usernameRef.touched">
+          <label for="username">Username <span class="req">*</span></label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            [(ngModel)]="username"
+            #usernameRef="ngModel"
+            placeholder="Enter username"
+            required
+          />
+          <span class="error-msg" *ngIf="usernameRef.invalid && usernameRef.touched">
+            Username is required.
+          </span>
+        </div>
+
+        <!-- Email -->
+        <div class="field" [class.has-error]="emailRef.invalid && emailRef.touched">
+          <label for="email">Email <span class="req">*</span></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="email"
+            #emailRef="ngModel"
+            placeholder="Enter email"
+            required
+            email
+          />
+          <span class="error-msg" *ngIf="emailRef.invalid && emailRef.touched">
+            A valid email is required.
+          </span>
+        </div>
+
+        <!-- Password -->
+        <div class="field" [class.has-error]="passwordRef.invalid && passwordRef.touched">
+          <label for="password">Password <span class="req">*</span></label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            [(ngModel)]="password"
+            #passwordRef="ngModel"
+            placeholder="Enter password"
+            required
+            minlength="6"
+          />
+          <span class="error-msg" *ngIf="passwordRef.invalid && passwordRef.touched">
+            Password must be at least 6 characters.
+          </span>
+        </div>
+
+        <!-- Role -->
+        <div class="field" [class.has-error]="roleRef.invalid && roleRef.touched">
+          <label for="role">Role <span class="req">*</span></label>
+          <select
+            id="role"
+            name="role"
+            [(ngModel)]="role"
+            #roleRef="ngModel"
+            required
+          >
+            <option value="" disabled>Select role</option>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+            <option value="Guest">Guest</option>
+          </select>
+          <span class="error-msg" *ngIf="roleRef.invalid && roleRef.touched">
+            Please select a role.
+          </span>
+        </div>
+      </div>
+
+      <!-- ── Section: Additional Fields ───────────────────────────────── -->
+      <div class="section">
+        <div class="section-label">Additional Fields</div>
+
+        <!-- Gender — Radio Buttons -->
+        <div class="field">
+          <label class="field-title">Gender <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-pill">
+              <input type="radio" name="gender" value="Male"   [(ngModel)]="gender" required /> Male
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="gender" value="Female" [(ngModel)]="gender" /> Female
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="gender" value="Other"  [(ngModel)]="gender" /> Other
+            </label>
+          </div>
+        </div>
+
+        <!-- Status — Permanent / Probationary -->
+        <div class="field">
+          <label class="field-title">Employment Status <span class="req">*</span></label>
+          <div class="radio-group">
+            <label class="radio-pill status">
+              <input type="radio" name="status" value="Permanent"    [(ngModel)]="status" required /> Permanent
+            </label>
+            <label class="radio-pill status">
+              <input type="radio" name="status" value="Probationary" [(ngModel)]="status" /> Probationary
+            </label>
+          </div>
+        </div>
+
+        <!-- Comments / Notes -->
+        <div class="field">
+          <label for="comments">Comments / Notes</label>
+          <textarea
+            id="comments"
+            name="comments"
+            [(ngModel)]="comments"
+            placeholder="Add any notes here..."
+            rows="4"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- ── Submit ──────────────────────────────────────────────────── -->
+      <div class="form-footer">
+        <button
+          type="submit"
+          class="btn-submit"
+          [disabled]="myForm.invalid"
+        >
+          Submit Form
+        </button>
+        <span class="form-state-badge" [class.valid]="myForm.valid">
+          {{ myForm.valid ? '✓ Valid' : '○ Incomplete' }}
+        </span>
+      </div>
+
+    </form>
+  </div>
+
+</div>

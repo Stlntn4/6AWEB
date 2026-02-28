@@ -1,0 +1,305 @@
+<div class="page-wrapper" [class.light-mode]="!darkMode">
+
+  <!-- Orbs -->
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <!-- Force radio label color in light mode (Angular Material specificity fix) -->
+  <style>
+    .light-mode mat-radio-button *,
+    .light-mode .mat-mdc-radio-button *,
+    .light-mode .mdc-form-field label,
+    .light-mode .mdc-label {
+      color: #1a0a2e !important;
+      opacity: 1 !important;
+    }
+  </style>
+
+  <!-- ADDED: Dark/Light Mode Toggle -->
+  <div class="theme-toggle">
+    <mat-icon class="toggle-icon">{{ darkMode ? 'nightlight_round' : 'wb_sunny' }}</mat-icon>
+    <mat-slide-toggle [checked]="darkMode" (change)="toggleDarkMode()" color="accent">
+    </mat-slide-toggle>
+    <span class="toggle-label">{{ darkMode ? 'Dark' : 'Light' }}</span>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-badge">
+      <mat-icon>auto_awesome</mat-icon>
+      Angular Material · Reactive Form
+    </div>
+    <h1>Build Your Profile</h1>
+    <p class="header-sub">Powered by Angular Material components &amp; reactive forms</p>
+  </header>
+
+  <!-- Form Card -->
+  <mat-card class="form-card" *ngIf="!submitted">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+      <!-- ── SECTION: Identity ── -->
+      <div class="section-label">
+        <mat-icon>person</mat-icon> Identity
+      </div>
+
+      <!-- Username -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Username</mat-label>
+        <mat-icon matPrefix>alternate_email</mat-icon>
+        <input matInput formControlName="username" placeholder="e.g. cosmic_dev" />
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email *</mat-label>
+        <mat-icon matPrefix>mail_outline</mat-icon>
+        <input matInput type="email" formControlName="email" placeholder="hello@example.com" />
+        <mat-error *ngIf="profileForm.get('email')?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="profileForm.get('email')?.hasError('email')">Enter a valid email</mat-error>
+      </mat-form-field>
+
+      <!-- UPDATED: Password with custom validator messages -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password *</mat-label>
+        <mat-icon matPrefix>lock_outline</mat-icon>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+        <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-hint>Letters &amp; numbers only · must start with a letter · min. 8 chars</mat-hint>
+        <mat-error *ngIf="passwordErrors">{{ passwordErrors }}</mat-error>
+      </mat-form-field>
+
+      <!-- Gender -->
+      <div class="field-group">
+        <label class="field-label">Gender</label>
+        <mat-radio-group formControlName="gender" class="radio-group">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+          <mat-radio-button value="other">Other</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <mat-divider class="divider"></mat-divider>
+
+      <!-- ── SECTION: Details ── -->
+      <div class="section-label">
+        <mat-icon>info</mat-icon> Details
+      </div>
+
+      <!-- Address -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Address</mat-label>
+        <mat-icon matPrefix>location_on</mat-icon>
+        <input matInput formControlName="address" placeholder="Street, City, Country" />
+      </mat-form-field>
+
+      <!-- UPDATED: Birth Date restricted to 2006 and below -->
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Birth Date * <span class="dob-note">(born 2006 or earlier)</span></mat-label>
+        <mat-icon matPrefix>cake</mat-icon>
+        <input matInput [matDatepicker]="picker" formControlName="birthDate" [max]="maxBirthDate" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+        <mat-error *ngIf="birthDateError">{{ birthDateError }}</mat-error>
+      </mat-form-field>
+
+      <!-- Skill Slider -->
+      <div class="field-group">
+        <label class="field-label">
+          Angular Skill Level:
+          <strong class="skill-value">{{ profileForm.get('skillLevel')?.value }}</strong>
+        </label>
+        <mat-slider min="1" max="10" step="1" class="full-width">
+          <input matSliderThumb formControlName="skillLevel" />
+        </mat-slider>
+      </div>
+
+      <mat-divider class="divider"></mat-divider>
+
+      <!-- ── SECTION: Badges ── -->
+      <div class="section-label">
+        <mat-icon>military_tech</mat-icon> Badges &amp; Status
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Notifications</label>
+        <div class="badge-row">
+          <button mat-icon-button [matBadge]="'4'" matBadgeColor="warn" type="button" class="badge-btn" matTooltip="Messages">
+            <mat-icon>chat_bubble_outline</mat-icon>
+          </button>
+          <button mat-icon-button [matBadge]="'12'" matBadgeColor="warn" type="button" class="badge-btn" matTooltip="Alerts">
+            <mat-icon>notifications_none</mat-icon>
+          </button>
+          <button mat-icon-button [matBadge]="'2'" matBadgeColor="warn" type="button" class="badge-btn" matTooltip="Tasks">
+            <mat-icon>assignment</mat-icon>
+          </button>
+          <span class="status-badge online"><span class="dot"></span>Active</span>
+          <span class="status-badge new-badge"><span class="dot"></span>New</span>
+          <span class="status-badge pro"><span class="dot"></span>Pro</span>
+        </div>
+      </div>
+
+      <mat-divider class="divider"></mat-divider>
+
+      <!-- ── SECTION: Checkboxes ── -->
+      <div class="section-label">
+        <mat-icon>checklist</mat-icon> Preferences
+      </div>
+
+      <div class="field-group checkbox-group">
+        <mat-checkbox formControlName="newsletter" color="warn">
+          <span class="check-label">Subscribe to newsletter</span>
+          <small>Get the latest Angular news &amp; updates</small>
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="twoFactor" color="warn">
+          <span class="check-label">Enable two-factor authentication</span>
+          <small>Recommended for account security</small>
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="agreeTerms" color="warn">
+          <span class="check-label">I agree to Terms &amp; Privacy Policy</span>
+          <small>Required to proceed</small>
+        </mat-checkbox>
+      </div>
+
+      <mat-divider class="divider"></mat-divider>
+
+      <!-- ── SECTION: Chips ── -->
+      <div class="section-label">
+        <mat-icon>style</mat-icon> Tech Stack Interests
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Select your skills</label>
+        <mat-chip-listbox formControlName="techStack" multiple class="chips-list">
+          <mat-chip-option *ngFor="let tech of techOptions" [value]="tech.value" [selected]="tech.selected">
+            {{ tech.label }}
+          </mat-chip-option>
+        </mat-chip-listbox>
+      </div>
+
+      <!-- Bio -->
+      <mat-form-field appearance="fill" class="full-width" style="margin-top: 8px;">
+        <mat-label>Short Bio</mat-label>
+        <textarea matInput formControlName="bio" rows="3" placeholder="Tell us about yourself..."></textarea>
+      </mat-form-field>
+
+      <!-- Submit -->
+      <button type="submit" class="submit-btn" [disabled]="profileForm.invalid">
+        Create Profile →
+      </button>
+
+      <div class="form-footer">
+        Already have an account? <a href="#">Sign in</a>
+      </div>
+
+    </form>
+  </mat-card>
+
+  <!-- ── Success Card: shows all submitted data ── -->
+  <mat-card class="form-card success-card" *ngIf="submitted && submittedData">
+
+    <!-- Success header -->
+    <div class="success-header">
+      <div class="success-icon"><mat-icon>check_circle</mat-icon></div>
+      <h2 class="success-title">Profile Created!</h2>
+      <p class="success-sub">Here are the details you submitted</p>
+    </div>
+
+    <mat-divider class="divider"></mat-divider>
+
+    <!-- Identity -->
+    <div class="section-label"><mat-icon>person</mat-icon> Identity</div>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">Username</span>
+        <span class="detail-value">{{ submittedData.username || '—' }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Email</span>
+        <span class="detail-value">{{ submittedData.email }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Password</span>
+        <span class="detail-value">••••••••</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Gender</span>
+        <span class="detail-value">{{ submittedData.gender ? (submittedData.gender | titlecase) : '—' }}</span>
+      </div>
+    </div>
+
+    <mat-divider class="divider"></mat-divider>
+
+    <!-- Details -->
+    <div class="section-label"><mat-icon>info</mat-icon> Details</div>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">Address</span>
+        <span class="detail-value">{{ submittedData.address || '—' }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Birth Date</span>
+        <span class="detail-value">{{ submittedData.birthDate | date:'MMMM d, yyyy' }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Angular Skill Level</span>
+        <span class="detail-value skill-display">{{ submittedData.skillLevel }} / 10</span>
+      </div>
+    </div>
+
+    <mat-divider class="divider"></mat-divider>
+
+    <!-- Preferences -->
+    <div class="section-label"><mat-icon>checklist</mat-icon> Preferences</div>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="detail-label">Newsletter</span>
+        <span class="detail-value">
+          <span class="pref-badge" [class.pref-yes]="submittedData.newsletter" [class.pref-no]="!submittedData.newsletter">
+            {{ submittedData.newsletter ? '✓ Subscribed' : '✗ Not subscribed' }}
+          </span>
+        </span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Two-Factor Auth</span>
+        <span class="detail-value">
+          <span class="pref-badge" [class.pref-yes]="submittedData.twoFactor" [class.pref-no]="!submittedData.twoFactor">
+            {{ submittedData.twoFactor ? '✓ Enabled' : '✗ Disabled' }}
+          </span>
+        </span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Terms Agreed</span>
+        <span class="detail-value">
+          <span class="pref-badge pref-yes">✓ Agreed</span>
+        </span>
+      </div>
+    </div>
+
+    <mat-divider class="divider"></mat-divider>
+
+    <!-- Tech Stack -->
+    <div class="section-label"><mat-icon>style</mat-icon> Tech Stack</div>
+    <div class="chips-list" style="margin-bottom: 20px;">
+      <span class="detail-chip" *ngFor="let t of submittedData.techStack">{{ t }}</span>
+      <span *ngIf="!submittedData.techStack?.length" class="detail-value">—</span>
+    </div>
+
+    <!-- Bio -->
+    <ng-container *ngIf="submittedData.bio">
+      <div class="section-label"><mat-icon>notes</mat-icon> Short Bio</div>
+      <p class="detail-bio">{{ submittedData.bio }}</p>
+    </ng-container>
+
+    <!-- Back button -->
+    <button type="button" class="submit-btn" (click)="resetForm()">
+      ← Back to Form
+    </button>
+
+  </mat-card>
+
+</div>

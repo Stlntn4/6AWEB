@@ -1,0 +1,71 @@
+<div class="container">
+  <h1>Books Application</h1>
+
+  <div class="form">
+    <input [(ngModel)]="newTitle" placeholder="Title">
+    <input [(ngModel)]="newDesc" placeholder="Description">
+    <input [(ngModel)]="newPrice" type="number" placeholder="Book Price">
+    <input [(ngModel)]="newAuthor" placeholder="Author">
+
+    <!-- Category Select -->
+    <select [(ngModel)]="newCategory">
+      <option value="" disabled>Select Category</option>
+      <option value="Fiction">Fiction</option>
+      <option value="Non-Fiction">Romance</option>
+      <option value="Science">Horror</option>
+      <option value="History">History</option>
+      <option value="Technology">Technology</option>
+      <option value="Education">Education</option>
+    </select>
+
+    <button (click)="addBook()">Add Book</button>
+  </div>
+
+  <div class="book-card" *ngFor="let book of books">
+
+    <!-- VIEW MODE -->
+    <ng-container *ngIf="editingId !== book.id">
+      <div class="book-info">
+        <b>{{ book.title }}</b>
+        <p>{{ book.desc }}</p>
+        <span>Author: {{ book.author }}</span>
+        <span>Category: {{ book.category }}</span>
+        <span class="price">₱{{ book.price }}</span>
+      </div>
+      <div class="card-actions">
+        <button class="edit-btn" (click)="startEdit(book)">Edit</button>
+        <button class="delete-btn" (click)="deleteBook(book.id)">Delete</button>
+      </div>
+    </ng-container>
+
+    <!-- EDIT MODE -->
+    <ng-container *ngIf="editingId === book.id">
+      <div class="edit-form">
+        <input [(ngModel)]="editTitle" placeholder="Title">
+        <input [(ngModel)]="editDesc" placeholder="Description">
+        <input [(ngModel)]="editPrice" type="number" placeholder="Price">
+        <input [(ngModel)]="editAuthor" placeholder="Author">
+        <select [(ngModel)]="editCategory">
+          <option value="" disabled>Select Category</option>
+          <option value="Fiction">Fiction</option>
+          <option value="Non-Fiction">Romance</option>
+          <option value="Science">Horror</option>
+          <option value="History">History</option>
+          <option value="Technology">Technology</option>
+          <option value="Education">Education</option>
+        </select>
+      </div>
+      <div class="card-actions">
+        <button class="save-btn" (click)="saveEdit(book.id)">Save</button>
+        <button class="cancel-btn" (click)="cancelEdit()">Cancel</button>
+      </div>
+    </ng-container>
+
+  </div>
+
+  <ng-template #empty>
+    <p class="empty">No books available</p>
+  </ng-template>
+
+  <router-outlet></router-outlet>
+</div>

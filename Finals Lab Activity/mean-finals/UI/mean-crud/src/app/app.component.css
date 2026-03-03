@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: #121212;
+  min-height: 100vh;
+  color: #e0e0e0;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: 60px auto;
+  background: #1e1e2f;
+  padding: 48px 52px;
+  border-radius: 20px;
+  border: 1px solid #2c2c3e;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  color: #fefefe;
+  margin: 0 0 36px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6ec7, #8360c3);
+  border-radius: 2px;
+  margin: 10px auto 0;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-bottom: 40px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid #2c2c3e;
+}
+
+/* Inputs & Select */
+input, select {
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1.5px solid #2c2c3e;
+  outline: none;
+  width: 200px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 400;
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder {
+  color: #7a7a9e;
+}
+
+input:focus, select:focus {
+  border-color: #ff6ec7;
+  background-color: #2b1b3b;
+  box-shadow: 0 0 0 3px rgba(255, 110, 199, 0.2);
+}
+
+select option {
+  background: #1e1e2f;
+  color: #e0e0e0;
+}
+
+/* Buttons */
+button {
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #ff6ec7, #8360c3);
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #ff87d1, #9a6fc2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255, 110, 199, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Book Cards */
+.book-card {
+  background: #2a2a3f;
+  border-radius: 18px;
+  padding: 20px 24px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #3a3a5a;
+  border-left: 5px solid #ff6ec7;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(255, 110, 199, 0.2);
+  border-color: #ff6ec7;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.book-info b {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.book-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #b0b0c5;
+}
+
+.book-info span {
+  font-size: 13px;
+  color: #b0b0c5;
+}
+
+.price {
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  color: #ff87d1 !important;
+}
+
+/* Card Actions */
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Edit Button */
+.edit-btn {
+  background: linear-gradient(135deg, #ff6ec7, #8360c3);
+  color: #ffffff;
+  padding: 8px 16px;
+  font-size: 13px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: linear-gradient(135deg, #ff87d1, #9a6fc2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 110, 199, 0.4);
+}
+
+/* Delete Button */
+.delete-btn {
+  background: transparent;
+  color: #ff6b6b;
+  padding: 8px 16px;
+  font-size: 13px;
+  border: 1.5px solid #ff6b6b;
+  border-radius: 10px;
+}
+
+.delete-btn:hover {
+  background: #ff6b6b;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.25);
+  transform: translateY(-1px);
+}
+
+/* Save Button */
+.save-btn {
+  background: linear-gradient(135deg, #3ddc97, #16a34a);
+  color: #ffffff;
+  padding: 8px 16px;
+  font-size: 13px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background: linear-gradient(135deg, #5ee0ac, #22c55e);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.35);
+}
+
+/* Cancel Button */
+.cancel-btn {
+  background: transparent;
+  color: #b0b0c5;
+  padding: 8px 16px;
+  font-size: 13px;
+  border-radius: 10px;
+  border: 1.5px solid #3a3a5a;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background: #3a3a5a;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Edit Form */
+.edit-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: 1;
+  margin-right: 16px;
+}
+
+.edit-form input,
+.edit-form select {
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #3a3a5a;
+  font-size: 13px;
+  width: 160px;
+  background: #1e1e2f;
+  color: #e0e0e0;
+  outline: none;
+}
+
+.edit-form input:focus,
+.edit-form select:focus {
+  border-color: #ff6ec7;
+  background: #2b1b3b;
+  box-shadow: 0 0 0 3px rgba(255, 110, 199, 0.2);
+}
+
+/* Empty State */
+.empty {
+  text-align: center;
+  color: #7a7a9e;
+  font-style: italic;
+  font-size: 15px;
+  padding: 30px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 28px 24px;
+    margin: 30px auto;
+  }
+
+  h1 { font-size: 24px; }
+
+  input, select { width: 100%; }
+
+  .form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .book-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .card-actions {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .edit-form input,
+  .edit-form select { width: 100%; }
+
+  .edit-form { margin-right: 0; }
+}
